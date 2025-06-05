@@ -36,7 +36,7 @@ lidar_data = nusc.get("sample_data", my_sample["data"][lidar_sensor])
 lidar_path = os.path.join(DATA_ROOT, lidar_data["filename"])
 bin_pcd = np.fromfile(lidar_path, dtype=np.float32).reshape((-1, 5))[:, :3]
 
-# get lidar calibration data & ego pose at the lidar timestamp
+# get lidar calibration data and ego pose at the lidar timestamp
 cs_lidar = nusc.get("calibrated_sensor", lidar_data["calibrated_sensor_token"])
 pose_lidar = nusc.get("ego_pose", lidar_data["ego_pose_token"])
 
@@ -70,7 +70,7 @@ for cam_sensor in camera_sensors:
         points_cam_frame, Quaternion(cs_cam["rotation"]).rotation_matrix.T
     )
 
-    # Load image and dummy logits
+    # load image and dummy logits
     img_path = os.path.join(DATA_ROOT, cam_data["filename"])
     img = cv2.imread(img_path)
     img_height, img_width = img.shape[:2]
